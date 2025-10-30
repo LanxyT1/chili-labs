@@ -1,3 +1,4 @@
+![Chili Labs Logo](./src/assets/logo.svg) store page using:
 # React + TypeScript + Vite
 
 ## Chili Labs homework
