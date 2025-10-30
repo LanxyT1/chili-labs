@@ -43,7 +43,7 @@ const ProductsFilter = ({
         <Input
             label="Search"
             placeholder="Search products..."
-            className="w-full"
+            className="w-full mb-8"
             role="search"
             id="productSearch"
             onChange={onChange}
