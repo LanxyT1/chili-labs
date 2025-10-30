@@ -1,0 +1,7 @@
+.cl-link {
+    @apply rounded-full px-5 py-3 text-sm transition-all duration-200 block border cursor-pointer text-center;
+}
+
+.cl-link:hover {
+    @apply bg-black text-white;
+}

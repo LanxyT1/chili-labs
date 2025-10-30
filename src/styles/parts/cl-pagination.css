@@ -1,0 +1,15 @@
+.cl-pagination-button {
+    @apply px-3 py-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed border;
+}
+
+.cl-pagination-button:hover {
+    @apply bg-white cursor-pointer;
+}
+
+.cl-pagination-button:disabled {
+    @apply opacity-50 pointer-events-none;
+}
+
+.cl-pagination-button.active {
+    @apply bg-black text-white border-transparent;
+}

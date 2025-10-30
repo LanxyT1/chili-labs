@@ -1,0 +1,3 @@
+.cl-header {
+    @apply flex flex-row justify-between px-10 py-4 items-center sticky top-0 z-10 bg-[--color-secondary] backdrop-blur-3xl;
+}

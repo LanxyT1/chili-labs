@@ -1,0 +1,15 @@
+.cl-label {
+    @apply block absolute pl-8 pt-4 text-xs transition-all duration-200;
+}
+
+.cl-input {
+    @apply px-8 pb-4 pt-8 rounded-full border transition-all duration-200;
+}
+
+.cl-input:focus {
+    @apply outline-none border-(--color-primary) shadow-[0_0_0_1px_var(--color-primary)];
+}
+
+:has(.cl-input:focus) .cl-label {
+    @apply text-(--color-primary);
+}
