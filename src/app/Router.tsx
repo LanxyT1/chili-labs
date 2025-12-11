@@ -30,7 +30,6 @@ const routes: DataRouter = createBrowserRouter([
                     })),
             },
             {
-                path: "/products/:id",
                 lazy: () =>
                     import("./pages/ProductDetails").then((m) => ({
                         Component: m.default,
