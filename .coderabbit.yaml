@@ -16,6 +16,7 @@ reviews:
       instructions: |
         1. Redux Toolkit (@reduxjs/toolkit) is not allowed - low level issue. If found, suggest plain Redux (no slices).
         2. Tailwind CSS (@tailwindcss) is not allowed - critical level issue. If found, suggest CSS Modules.
+        3. Tailwind classes  are  not allowed to use if there found classes create an errr - critical level issue. If found, suggest CSS Modules.
 
   finishing_touches:
     docstrings:
