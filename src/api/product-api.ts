@@ -24,6 +24,8 @@ export async function fetchProducts(): Promise<ProductData[]> {
         thumbnail: data.thumbnail,
         rating: data.rating,
         images: data.images,
+        brand: (data as { brand?: string }).brand,
+        category: (data as { category?: string }).category,
     }));
 }
 
@@ -44,5 +46,7 @@ export async function fetchProductById(id: string): Promise<ProductData> {
         thumbnail: data.thumbnail,
         rating: data.rating,
         images: data.images,
+        brand: (data as { brand?: string }).brand,
+        category: (data as { category?: string }).category,
     };
 }

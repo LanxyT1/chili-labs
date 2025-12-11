@@ -2,6 +2,10 @@
 import { useCallback, useState, type JSX } from "react";
 import ProductsFilter from "../../features/products/ProductsFilter";
 import ProductList from "../../features/products/ProductList";
+import {
+    emptyProductFilters,
+    type ProductFilters,
+} from "../../types/product-filters";
 
 /**
  * Renders the product list component that displays a grid of products.
@@ -9,9 +13,15 @@ import ProductList from "../../features/products/ProductList";
  */
 const ProductsPage = (): JSX.Element => {
     const [filterValue, setFilterValue] = useState("");
+    const [activeFilters, setActiveFilters] =
+        useState<ProductFilters>(emptyProductFilters);
 
     const handleFilterChange = useCallback((value: string): void => {
         setFilterValue(value);
+    }, []);
+
+    const handleOptionsChange = useCallback((filters: ProductFilters): void => {
+        setActiveFilters(filters);
     }, []);
 
     return (
@@ -25,8 +35,14 @@ const ProductsPage = (): JSX.Element => {
                 something for everyone.
             </p>
 
-            <ProductsFilter handleFilterChange={handleFilterChange} />
-            <ProductList filterValue={filterValue} />
+            <ProductsFilter
+                handleFilterChange={handleFilterChange}
+                onFiltersChange={handleOptionsChange}
+            />
+            <ProductList
+                filterValue={filterValue}
+                filters={activeFilters}
+            />
         </section>
     );
 };

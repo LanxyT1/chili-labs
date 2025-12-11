@@ -8,4 +8,6 @@ export type ProductData = {
     thumbnail: string;
     rating: number;
     images: string[];
+    brand?: string;
+    category?: string;
 };
