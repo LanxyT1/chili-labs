@@ -13,7 +13,6 @@ const MainLayout = (): JSX.Element => {
 
   console.log("test");
   var price = 0;
-  var currency = "";
 
   return (
     <div className="flex flex-col min-h-screen">
