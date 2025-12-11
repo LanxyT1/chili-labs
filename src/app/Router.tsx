@@ -9,13 +9,6 @@ import type { JSX } from "react";
 import NotFoundPage from "./pages/NotFound";
 import MainLayout from "../components/layouts/MainLayout";
 
-var testOne = 1;
-var testTwo = 2;
-
-console.log(testOne + testTwo);
-
-const LOL: any = "asdasd";
-
 /**
  * Creates a list of all application's routes.
  * @returns DataRouter: list of all routes.
@@ -37,6 +30,7 @@ const routes: DataRouter = createBrowserRouter([
                     })),
             },
             {
+                path: "/products/:id",
                 lazy: () =>
                     import("./pages/ProductDetails").then((m) => ({
                         Component: m.default,
