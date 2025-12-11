@@ -13,3 +13,4 @@ const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 };
 
 export default AppProvider;
+
