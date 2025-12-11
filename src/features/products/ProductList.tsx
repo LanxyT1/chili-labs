@@ -7,9 +7,11 @@ import { Link } from "react-router";
 import { fetchProducts } from "../../api/product-api";
 import { usePagination, useFilteredItems } from "../../hooks";
 import React from "react";
+import type { ProductFilters } from "../../types/product-filters";
 
 type ProductListProps = {
     filterValue?: string;
+    filters?: ProductFilters;
 };
 
 const ITEMS_PER_PAGE: number = 12;
@@ -20,7 +22,10 @@ const ITEMS_PER_PAGE: number = 12;
  * @param filterValue - Optional string to filter products by title.
  * @returns JSX.Element representing the list of products with pagination.
  */
-const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
+const ProductList = ({
+    filterValue,
+    filters,
+}: ProductListProps): JSX.Element => {
     const [products, setProducts] = useState<ProductData[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(true);
@@ -44,7 +49,7 @@ const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [filterValue]);
+    }, [filterValue, filters]);
 
     const onPageChange = (pageNumber: number): void => {
         setCurrentPage(pageNumber);
@@ -57,8 +62,38 @@ const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
         filterKey: "title",
     });
 
+    const withExtraFilters = filteredProducts.filter((product) => {
+        const priceRules = filters?.price || [];
+        const ratingRules = filters?.ratings || [];
+        const brandRules = filters?.brands || [];
+
+        const matchesPrice =
+            priceRules.length === 0 ||
+            priceRules.some((rule) => {
+                if (rule === "under-300") return product.price < 300;
+                if (rule === "300-700")
+                    return product.price >= 300 && product.price <= 700;
+                if (rule === "over-700") return product.price > 700;
+                return true;
+            });
+
+        const matchesRating =
+            ratingRules.length === 0 ||
+            ratingRules.some((rule) => {
+                if (rule === "4-plus") return product.rating >= 4;
+                if (rule === "3-plus") return product.rating >= 3;
+                return true;
+            });
+
+        const matchesBrand =
+            brandRules.length === 0 ||
+            brandRules.includes((product.brand || "").toLowerCase());
+
+        return matchesPrice && matchesRating && matchesBrand;
+    });
+
     const { paginatedItems: paginatedProducts, totalPages } = usePagination({
-        items: filteredProducts,
+        items: withExtraFilters,
         currentPage,
         itemsPerPage: ITEMS_PER_PAGE,
     });
@@ -109,6 +144,9 @@ const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
                                 <h2 className="font-bold">{product.title}</h2>
                                 <p className="text-sm text-gray-700">
                                     {product.description}
+                                </p>
+                                <p className="text-xs uppercase tracking-wide text-gray-500">
+                                    {product.brand || "unknown"}
                                 </p>
                                 <p className="font-medium text-2xl">
                                     ${product.price.toFixed(2)}
