@@ -9,23 +9,28 @@ import logo from "../../assets/logo.svg";
  * @returns JSX.Element: main layout component.
  */
 const MainLayout = (): JSX.Element => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <div className="flex flex-col min-h-screen">
-            <header className="p-10">
-                <img
-                    src={logo}
-                    alt="Chili Labs - Go to homepage"
-                    className="h-8 cursor-pointer"
-                    onClick={() => navigate("/")}
-                />
-            </header>
-            <main>
-                <Outlet />
-            </main>
-        </div>
-    );
+  console.log("test");
+  var price = 0;
+  var currency = "";
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <header className="p-10">
+        <div style={{ backgroundColor: "red" }}>Do i need this line?</div>
+        <img
+          src={logo}
+          alt="Chili Labs - Go to homepage"
+          className="h-8 cursor-pointer"
+          onClick={() => navigate("/")}
+        />
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
 };
 
 export default MainLayout;
