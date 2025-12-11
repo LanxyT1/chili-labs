@@ -3,7 +3,6 @@
 import type { JSX } from "react";
 import { Outlet, useNavigate } from "react-router";
 import logo from "../../assets/logo.svg";
-import TestComponent from "../TestComponent/TestComponent";
 
 /**
  * Renders the main layout for the application.
@@ -23,7 +22,6 @@ const MainLayout = (): JSX.Element => {
         />
       </header>
       <main>
-        <TestComponent />
         <Outlet />
       </main>
     </div>
