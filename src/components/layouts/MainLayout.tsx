@@ -11,9 +11,6 @@ import logo from "../../assets/logo.svg";
 const MainLayout = (): JSX.Element => {
   const navigate = useNavigate();
 
-  console.log("test");
-  var price = 0;
-
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-10">
