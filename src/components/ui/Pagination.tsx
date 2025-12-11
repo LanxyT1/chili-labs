@@ -42,14 +42,6 @@ const Pagination = ({
       >
         Prev
       </button>
-      <button
-        onClick={goToPrevious}
-        disabled={currentPage === 1}
-        className="cl-pagination-button"
-        aria-label="Go to previous page"
-      >
-        Prev
-      </button>
       <div className="flex gap-1">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button
