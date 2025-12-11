@@ -7,6 +7,9 @@ import { Link } from "react-router";
 import { fetchProducts } from "../../api/product-api";
 import { usePagination, useFilteredItems } from "../../hooks";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPhonesData } from "../../store/phonesSlice";
+import type { RootState } from "../../store/store";
 
 type ProductListProps = {
     filterValue?: string;
@@ -21,7 +24,8 @@ const ITEMS_PER_PAGE: number = 12;
  * @returns JSX.Element representing the list of products with pagination.
  */
 const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
-    const [products, setProducts] = useState<ProductData[]>([]);
+    const dispatch = useDispatch();
+    const products = useSelector((state: RootState) => state.phones.items);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -31,7 +35,7 @@ const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
         setError(null);
         fetchProducts()
             .then((data) => {
-                setProducts(data);
+                dispatch(setPhonesData(data));
                 setCurrentPage(1);
                 setLoading(false);
             })
@@ -40,7 +44,7 @@ const ProductList = ({ filterValue }: ProductListProps): JSX.Element => {
                 setError("Failed to load products. Please try again.");
                 setLoading(false);
             });
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         setCurrentPage(1);
