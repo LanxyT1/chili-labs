@@ -20,7 +20,7 @@ const Input = (
     <div className="flex flex-col gap-2 relative">
         {label && (
             <label
-                className="cl-label"
+                className="cl-label absolute -top-3 left-3 bg-white px-1 text-sm"
                 htmlFor={props.id}
             >
                 {label}

@@ -2,6 +2,8 @@
 
 import type { ProductApiResponse } from "../types/product-api-response";
 import type { ProductData } from "../types/product-data";
+import { store } from "../redux/store";
+import { setPhones } from "../redux/slices/phonesSlice";
 
 const DUMMY_API_URL = "https://dummyjson.com/";
 
@@ -16,7 +18,7 @@ export async function fetchProducts(): Promise<ProductData[]> {
 
     const data = await response.json();
 
-    return data.products.map((data: ProductApiResponse) => ({
+    const products = data.products.map((data: ProductApiResponse) => ({
         id: data.id,
         title: data.title,
         price: data.price,
@@ -25,6 +27,10 @@ export async function fetchProducts(): Promise<ProductData[]> {
         rating: data.rating,
         images: data.images,
     }));
+
+    store.dispatch(setPhones(products));
+
+    return products;
 }
 
 export async function fetchProductById(id: string): Promise<ProductData> {

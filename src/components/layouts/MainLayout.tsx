@@ -12,7 +12,7 @@ const MainLayout = (): JSX.Element => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-1 flex-col">
             <header className="p-10">
                 <img
                     src={logo}
