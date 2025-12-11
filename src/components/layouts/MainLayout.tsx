@@ -14,7 +14,6 @@ const MainLayout = (): JSX.Element => {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-10">
-        <div style={{ backgroundColor: "red" }}>Do i need this line?</div>
         <img
           src={logo}
           alt="Chili Labs - Go to homepage"
