@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews: 
+  profile: assertive
+
+  collapse_walkthrough: true
+
+  high_level_summary: false
+  sequence_diagrams: false
+  estimate_code_review_effort: false
+  suggested_labels: false
+  suggested_reviewers: false
+  poem: false
+
+  path_instructions:
+    - path: '**/*.{ts,tsx,js,jsx}'
+      instructions: |
+        1. Redux Toolkit (@reduxjs/toolkit) is not allowed - low level issue. If found, suggest plain Redux (no slices).
+        2. Tailwind CSS (@tailwindcss) is not allowed - critical level issue. If found, suggest CSS Modules.
+
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+
+  tools:
+    languagetool:
+      level: picky
+
+chat:
+  art: false
+  integrations:
+    linear:
+      usage: disabled
+
+knowledge_base:
+  opt_out: true
